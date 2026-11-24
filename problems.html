@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>수학 문제 풀기</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef5ff;
+      color: #222;
+    }
+
+    header {
+      background: #174a83;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #00000015;
+    }
+
+    .problem-item {
+      cursor: pointer;
+      border: 1px solid #ddd;
+    }
+
+    .problem-item:hover {
+      background: #e3f0ff;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: #2465b3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    button:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    .math-image {
+      display: block;
+      width: 100%;
+      max-width: 750px;
+      height: auto;
+      margin: 20px auto;
+      object-fit: contain;
+    }
+
+    .solution {
+      background: #f1f7ff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>수학 문제 풀기</h1>
+  <p>문제 이미지를 보고 해설을 확인하세요.</p>
+</header>
+
+<main>
+
+  <!-- 문제 목록 -->
+  <div id="problemList">
+    <h2>문제 목록</h2>
+    <div id="listContainer"></div>
+
+    <button onclick="location.href='index.html'">
+      홈페이지로 돌아가기
+    </button>
+  </div>
+
+  <!-- 문제 화면 -->
+  <div id="problemScreen" class="hidden">
+
+    <button onclick="goBack()">
+      ← 문제 목록
+    </button>
+
+    <div class="card">
+      <h2 id="problemTitle"></h2>
+
+      <!-- 문제 이미지 -->
+      <img id="problemImage"
+           class="math-image"
+           alt="수학 문제 이미지">
+
+      <!-- 해설 보기 버튼 -->
+      <button onclick="toggleSolution()">
+        📖 해설 보기 / 닫기
+      </button>
+
+      <!-- 해설 이미지 -->
+      <div id="solutionBox"
+           class="solution hidden">
+
+        <h3>문제 해설</h3>
+
+        <img id="solutionImage"
+             class="math-image"
+             alt="수학 해설 이미지">
+      </div>
+    </div>
+
+    <button id="nextButton"
+            onclick="nextProblem()">
+      다음 문제 →
+    </button>
+
+  </div>
+</main>
+
+<script>
+  // 문제와 해설 이미지 등록
+  const problems = [
+    {
+      title: "문제 1. 도형의 이동",
+      questionImage: "images/problems/q001.png",
+      solutionImage: "images/solutions/s001.png"
+    },
+    {
+      title: "문제 2. 직선의 방정식",
+      questionImage: "images/problems/q002.png",
+      solutionImage: "images/solutions/s002.png"
+    },
+    {
+      title: "문제 3. 경우의 수",
+      questionImage: "images/problems/q003.png",
+      solutionImage: "images/solutions/s003.png"
+    }
+  ];
+
+  let currentIndex = 0;
+
+  // 문제 목록 생성
+  function showList() {
+    const container =
+      document.getElementById("listContainer");
+
+    container.innerHTML = "";
+
+    problems.forEach((problem, index) => {
+      const item = document.createElement("div");
+      item.className = "card problem-item";
+      item.textContent = problem.title;
+
+      item.onclick = () => openProblem(index);
+      container.appendChild(item);
+    });
+  }
+
+  // 문제 열기
+  function openProblem(index) {
+    currentIndex = index;
+
+    document.getElementById("problemList")
+      .classList.add("hidden");
+
+    document.getElementById("problemScreen")
+      .classList.remove("hidden");
+
+    document.getElementById("problemTitle")
+      .textContent = problems[index].title;
+
+    document.getElementById("problemImage")
+      .src = problems[index].questionImage;
+
+    document.getElementById("solutionImage")
+      .src = problems[index].solutionImage;
+
+    // 다른 문제를 열면 해설은 다시 숨김
+    document.getElementById("solutionBox")
+      .classList.add("hidden");
+
+    document.getElementById("nextButton")
+      .disabled = index === problems.length - 1;
+  }
+
+  // 해설 보기 / 닫기
+  function toggleSolution() {
+    document.getElementById("solutionBox")
+      .classList.toggle("hidden");
+  }
+
+  // 목록으로 돌아가기
+  function goBack() {
+    document.getElementById("problemScreen")
+      .classList.add("hidden");
+
+    document.getElementById("problemList")
+      .classList.remove("hidden");
+  }
+
+  // 다음 문제
+  function nextProblem() {
+    if (currentIndex < problems.length - 1) {
+      openProblem(currentIndex + 1);
+    }
+  }
+
+  // 처음 실행 시 목록 표시
+  showList();
+</script>
+
+</body>
+</html>

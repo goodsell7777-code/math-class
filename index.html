@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>나의 수학 교실</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #eef5ff;
+    }
+
+    header {
+      background: #174a83;
+      color: white;
+      padding: 25px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 40px 20px;
+    }
+
+    main img {
+      width: 90%;
+      max-width: 500px;
+      border-radius: 12px;
+    }
+
+    section {
+      padding: 25px;
+    }
+
+    button {
+      background: #2465b3;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #174a83;
+      color: white;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="home">
+    <h1>나의 수학 교실</h1>
+    <nav>
+      <a href="#home">홈</a>
+      <a href="#concept">수학 개념</a>
+      <a href="#quiz">문제 풀이</a>
+      <a href="#materials">학습 자료</a>
+      <a href="#about">소개</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>수학의 즐거움을 함께 나눕니다</h2>
+    <p>생각하는 힘을 기르는 수학 학습 공간</p>
+
+    <img src="images/math.jpg" alt="수학 학습 사진">
+
+    <p>
+      <button onclick="location.href='#quiz'">
+        수학 공부 시작하기
+      </button>
+    </p>
+  </main>
+
+  <section id="concept">
+    <h2>수학 개념</h2>
+    <p>중요한 수학 개념을 쉽게 정리합니다.</p>
+  </section>
+
+ <section id="quiz">
+  <h2>문제 풀이</h2>
+  <p>다양한 수학 문제를 연습합니다.</p>
+
+  <a href="problems.html">
+    <button>수학 문제 풀기</button>
+  </a>
+</section>
+
+  <section id="materials">
+    <h2>학습 자료</h2>
+    <p>수업 자료를 제공합니다.</p>
+  </section>
+
+  <section id="about">
+    <h2>소개</h2>
+    <p>수학을 함께 배우는 공간입니다.</p>
+  </section>
+
+  <footer>
+    나의 수학 교실 © 2026
+  </footer>
+
+</body>
+</html>
